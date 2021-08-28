@@ -19,7 +19,8 @@
 
                                 <div class="md-form">
                                     <label for="email">メールアドレス</label>
-                                    <input class="form-control" type="text" id="email" name="email" required value="{{ old('email') }}">
+                                    <input class="form-control" type="text" id="email" name="email" required
+                                           value="{{ old('email') }}">
                                 </div>
 
                                 <div class="md-form">
@@ -30,6 +31,9 @@
                                 {{--ここから--}}
                                 <input type="hidden" name="remember" id="remember" value="on">
                                 {{--ここまで--}}
+                                <div class="text-left">
+                                    <a href="{{ route('password.request') }}" class="card-text">パスワードを忘れた方</a>
+                                </div>
 
                                 <button class="btn btn-block blue-gradient mt-2 mb-2" type="submit">ログイン</button>
 
