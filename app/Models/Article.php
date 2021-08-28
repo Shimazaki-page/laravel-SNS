@@ -19,4 +19,19 @@ class Article extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, 'likes')->withTimestamps();
+    }
+
+    public function isLikedBy(?User $user)
+    {
+        return $user ? (bool)$this->likes->where('id', $user->id)->count() : false;
+    }
+
+    public function getCountLikesAttribute() :int
+    {
+        return $this->likes->count();
+    }
 }

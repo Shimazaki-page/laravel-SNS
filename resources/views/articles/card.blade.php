@@ -18,7 +18,8 @@
                             <i class="fas fa-pen mr-1"></i>記事を更新する
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-danger" data-toggle="modal" data-target="#modal-delete-{{ $article->id }}">
+                        <a class="dropdown-item text-danger" data-toggle="modal"
+                           data-target="#modal-delete-{{ $article->id }}">
                             <i class="fas fa-trash-alt mr-1"></i>記事を削除する
                         </a>
                     </div>
@@ -61,6 +62,17 @@
         </h3>
         <div class="card-text">
             {{ $article->body }}
+        </div>
+    </div>
+    <div class="card-body pt-0 pb-2 pl-3">
+        <div class="card-text">
+            <article-like
+                v-bind:initial-is-liked-by='@json($article->isLikedBy(Auth::user()))'
+                v-bind:initial-count-likes='@json($article->count_likes)'
+                v-bind:authorized='@json(Auth::check())'
+                endpoint="{{route('articles.like',['article'=>$article])}}"
+            >
+            </article-like>
         </div>
     </div>
 </div>
